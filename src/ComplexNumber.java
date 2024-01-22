@@ -60,4 +60,9 @@ public class ComplexNumber {
         double im = a.im + b.im;
         return new ComplexNumber(re, im);
     }
+
+
+    public static ComplexNumber Mul(ComplexNumber a,ComplexNumber b){
+        return new ComplexNumber((a.re * b.re - a.im * b.im), (a.re * b.im + a.im * b.re));
+    }
 }
