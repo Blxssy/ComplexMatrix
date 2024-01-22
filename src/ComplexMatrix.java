@@ -77,16 +77,16 @@ public class ComplexMatrix {
 
     // Multiple
     public static ComplexNumber[][] Mul(ComplexMatrix a, ComplexMatrix b){
-        final var matrixM = new ComplexNumber[a.matrix.length][b.matrix[0].length];
-        for (var i = 0; i < matrixM.length; i++) {
-            for (var j = 0; j < matrixM[0].length; j++) {
-                matrixM[i][j] = new ComplexNumber(0, 0);
+        final var m = new ComplexNumber[a.matrix.length][b.matrix[0].length];
+        for (var i = 0; i < m.length; i++) {
+            for (var j = 0; j < m[0].length; j++) {
+                m[i][j] = new ComplexNumber(0, 0);
                 for (var k = 0; k < a.matrix[0].length; k++) {
-                    matrixM[i][j] = matrixM[i][j].plus(ComplexNumber.Mul(a.matrix[i][k], b.matrix[k][j]));
+                    m[i][j] = m[i][j].plus(ComplexNumber.Mul(a.matrix[i][k], b.matrix[k][j]));
                 }
             }
         }
 
-        return matrixM;
+        return m;
     }
 }
