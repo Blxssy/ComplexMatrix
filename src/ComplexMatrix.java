@@ -68,9 +68,10 @@ public class ComplexMatrix {
             }
         }
 
-        a.matrix = m;
+        ComplexMatrix n = new ComplexMatrix();
+        n.matrix = m;
 
-        return a;
+        return n;
     }
 
 
