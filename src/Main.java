@@ -1,31 +1,47 @@
 public class Main {
     public static void main(String[] args) {
-        ComplexMatrix a = new ComplexMatrix();
-        a.matrix[0][0] = new ComplexNumber(1,1);
-        a.matrix[0][1] = new ComplexNumber(2,2);
-        a.matrix[1][0] = new ComplexNumber(3,3);
-        a.matrix[1][1] = new ComplexNumber(4,4);
+        // Test
+        {
+            ComplexMatrix a = new ComplexMatrix();
+            a.matrix[0][0] = new ComplexNumber(1,1);
+            a.matrix[0][1] = new ComplexNumber(2,2);
+            a.matrix[1][0] = new ComplexNumber(3,3);
+            a.matrix[1][1] = new ComplexNumber(4,4);
 
-        ComplexMatrix b = new ComplexMatrix();
-        b.matrix[0][0] = new ComplexNumber(-1,-1);
-        b.matrix[0][1] = new ComplexNumber(-2,-2);
-        b.matrix[1][0] = new ComplexNumber(-3,-3);
-        b.matrix[1][1] = new ComplexNumber(-4,-4);
+            ComplexMatrix b = new ComplexMatrix();
+            b.matrix[0][0] = new ComplexNumber(-1,-1);
+            b.matrix[0][1] = new ComplexNumber(-2,-2);
+            b.matrix[1][0] = new ComplexNumber(-3,-3);
+            b.matrix[1][1] = new ComplexNumber(-4,-4);
 
-        var res = ComplexMatrix.Mul(a, b);
+            ComplexMatrix res = new ComplexMatrix();
+            res.matrix = ComplexMatrix.Mul(a, b);
 
-        var expected = new ComplexMatrix();
-        expected.matrix[0][0] = new ComplexNumber(0, -14);
-        expected.matrix[0][1] = new ComplexNumber(0, -20);
-        expected.matrix[1][0] = new ComplexNumber(0, -30);
-        expected.matrix[1][1] = new ComplexNumber(0, -44);
+            var expected = new ComplexMatrix();
+            expected.matrix[0][0] = new ComplexNumber(0, -14);
+            expected.matrix[0][1] = new ComplexNumber(0, -20);
+            expected.matrix[1][0] = new ComplexNumber(0, -30);
+            expected.matrix[1][1] = new ComplexNumber(0, -44);
 
-        if(res.matrix[0][0].im() == expected.matrix[0][0].im() && res.matrix[0][1].im() == expected.matrix[0][1].im() && res.matrix[1][0].im() == expected.matrix[1][0].im() && res.matrix[1][1].im() == expected.matrix[1][1].im()
-        && res.matrix[0][0].re() == expected.matrix[0][0].re() && res.matrix[0][1].re() == expected.matrix[0][1].re() && res.matrix[1][0].re() == expected.matrix[1][0].re() && res.matrix[1][1].re() == expected.matrix[1][1].re()){
+            for (int i = 0; i < 2; i++) {
+                for (int j = 0; j < 2; j++) {
+                    if(res.matrix[i][j].re() != expected.matrix[i][j].re() || res.matrix[i][j].im() != expected.matrix[i][j].im()){
+                        System.out.println("FAIL");
+                        return;
+                    }
+                }
+            }
             System.out.println("OK");
         }
-        else {
-            System.out.println("FAIL");
+
+        {
+            ComplexMatrix a = new ComplexMatrix();
+            ComplexMatrix b = new ComplexMatrix();
+
+            ComplexMatrix res = new ComplexMatrix();
+            res.matrix = ComplexMatrix.Mul(a, b);
+
+            res.Print();
         }
     }
 }

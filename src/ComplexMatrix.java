@@ -1,8 +1,8 @@
 public class ComplexMatrix {
     ComplexNumber[][] matrix;
 
-    private static final int minValue = -5;
-    private static final int maxValue = 5;
+    private static final int minValue = -10;
+    private static final int maxValue = 10;
     private static final int h = 2;
     private static final int w = 2;
 
@@ -74,8 +74,8 @@ public class ComplexMatrix {
     }
 
 
-    // Mul
-    public static ComplexMatrix Mul(ComplexMatrix a, ComplexMatrix b){
+    // Multiple
+    public static ComplexNumber[][] Mul(ComplexMatrix a, ComplexMatrix b){
         final var matrixM = new ComplexNumber[a.matrix.length][b.matrix[0].length];
         for (var i = 0; i < matrixM.length; i++) {
             for (var j = 0; j < matrixM[0].length; j++) {
@@ -85,7 +85,7 @@ public class ComplexMatrix {
                 }
             }
         }
-        a.matrix = matrixM;
-        return a;
+
+        return matrixM;
     }
 }
