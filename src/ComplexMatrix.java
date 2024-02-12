@@ -1,14 +1,18 @@
+
+
 public class ComplexMatrix {
     ComplexNumber[][] matrix;
 
-    private static final int minValue = -10;
-    private static final int maxValue = 10;
-    private static final int h = 2;
-    private static final int w = 2;
+    private static final int minValue = -5;
+    private static final int maxValue = 5;
+    private static int h = 0;
+    private static int w = 0;
 
 
     // Constructor
-    public ComplexMatrix(){
+    public ComplexMatrix(int he, int wi){
+        h = he;
+        w = wi;
         matrix = new ComplexNumber[h][w];
         for (int i = 0; i < h; i++) {
             matrix[i] = new ComplexNumber[w];
@@ -68,7 +72,7 @@ public class ComplexMatrix {
             }
         }
 
-        ComplexMatrix n = new ComplexMatrix();
+        ComplexMatrix n = new ComplexMatrix(h, w);
         n.matrix = m;
 
         return n;
@@ -88,5 +92,11 @@ public class ComplexMatrix {
         }
 
         return m;
+    }
+
+
+    // Determinant
+    public static int Det(){
+        return 0;
     }
 }

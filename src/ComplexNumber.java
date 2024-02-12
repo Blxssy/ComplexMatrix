@@ -27,10 +27,10 @@ public class ComplexNumber {
     // Print
     public void print(){
         if(this.im >= 0){
-            System.out.print(this.re + "+" + this.im+"i");
+            System.out.print(Math.round(re) + "+" + Math.round(im)+"i");
         }
         else{
-            System.out.print(this.re + "" + this.im+"i");
+            System.out.print(Math.round(re) + "" + Math.round(im)+"i");
         }
 
     }
