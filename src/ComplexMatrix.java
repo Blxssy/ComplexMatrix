@@ -2,11 +2,8 @@
 
 public class ComplexMatrix {
     ComplexNumber[][] matrix;
-
-    private static final int minValue = -5;
-    private static final int maxValue = 5;
-    private static int h = 0;
-    private static int w = 0;
+    public int h = 0;
+    public int w = 0;
 
 
     // Constructor
@@ -19,8 +16,8 @@ public class ComplexMatrix {
         }
         for (int i = 0; i < h; i++) {
             for (int j = 0; j < w; j++) {
-                double re = minValue + (int) (Math.random() * (maxValue - minValue + 1));
-                double im = minValue + (int) (Math.random() * (maxValue - minValue + 1));
+                double re = Math.round(Math.random() * 5);
+                double im = Math.round(Math.random() * 5);
 
                 if (matrix != null) {
                     matrix[i][j] = new ComplexNumber(re, im);
@@ -28,7 +25,6 @@ public class ComplexMatrix {
             }
         }
     }
-
 
     public int GetHeight(){
         return h;
@@ -50,43 +46,39 @@ public class ComplexMatrix {
 
     // PLus
     public static ComplexMatrix Plus(ComplexMatrix a, ComplexMatrix b){
-        for (int i = 0; i < h; i++) {
-            for (int j = 0; j < w; j++) {
-                a.matrix[i][j] =  a.matrix[i][j].plus(b.matrix[i][j]);
+        ComplexMatrix res = new ComplexMatrix(a.h, a.w);
+        for (int i = 0; i < a.h; i++) {
+            for (int j = 0; j < a.w; j++) {
+                res.matrix[i][j] = ComplexNumber.Plus(a.matrix[i][j], b.matrix[i][j]);
             }
         }
 
-        return a;
+        return res;
     }
 
 
     // T
     public static ComplexMatrix T(ComplexMatrix a){
-        ComplexNumber[][] m = new ComplexNumber[h][w];
-        for (int i = 0; i < h; i++) {
-            m[i] = new ComplexNumber[w];
-        }
-        for (int i = 0; i < h; i++) {
-            for (int j = 0; j < w; j++) {
-                m[i][j] = a.matrix[j][i];
+        ComplexMatrix m = new ComplexMatrix(a.h, a.w);
+
+        for (int i = 0; i < a.h; i++) {
+            for (int j = 0; j < a.w; j++) {
+                m.matrix[i][j] = a.matrix[j][i];
             }
         }
 
-        ComplexMatrix n = new ComplexMatrix(h, w);
-        n.matrix = m;
-
-        return n;
+        return m;
     }
 
 
     // Multiple
     public static ComplexNumber[][] Mul(ComplexMatrix a, ComplexMatrix b){
-        final var m = new ComplexNumber[a.matrix.length][b.matrix[0].length];
-        for (var i = 0; i < m.length; i++) {
-            for (var j = 0; j < m[0].length; j++) {
+        ComplexNumber[][] m = new ComplexNumber[a.h][b.w];
+        for (var i = 0; i < a.h; i++) {
+            for (var j = 0; j < b.w; j++) {
                 m[i][j] = new ComplexNumber(0, 0);
-                for (var k = 0; k < a.matrix[0].length; k++) {
-                    m[i][j] = m[i][j].plus(ComplexNumber.Mul(a.matrix[i][k], b.matrix[k][j]));
+                for (var k = 0; k < a.w; k++) {
+                    m[i][j] = ComplexNumber.Plus(m[i][j], ComplexNumber.Mul(a.matrix[i][k], b.matrix[k][j]));
                 }
             }
         }

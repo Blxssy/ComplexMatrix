@@ -1,9 +1,6 @@
 public class ComplexNumber {
     private double re;
     private double im;
-    private static final int minValue = 1;
-    public static final int maxValue = 50;
-
 
     // Constructor
     public ComplexNumber(double r, double i){
@@ -35,16 +32,6 @@ public class ComplexNumber {
 
     }
 
-
-    // Plus
-    public ComplexNumber plus(ComplexNumber b){
-        ComplexNumber a = this;
-        double real = a.re + b.re;
-        double im = a.im + b.im;
-        return new ComplexNumber(real, im);
-    }
-
-
     // Minus
     public ComplexNumber minus(ComplexNumber b){
         ComplexNumber a = this;
@@ -54,11 +41,12 @@ public class ComplexNumber {
     }
 
 
-    // Static plus
+    // Plus
     public static ComplexNumber Plus(ComplexNumber a, ComplexNumber b){
-        double re = a.re + b.re;
-        double im = a.im + b.im;
-        return new ComplexNumber(re, im);
+        ComplexNumber res = new ComplexNumber(0, 0);
+        res.re = a.re + b.re;
+        res.im = a.im + b.im;
+        return res;
     }
 
 
